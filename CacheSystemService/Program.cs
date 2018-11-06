@@ -1,31 +1,104 @@
 ﻿using Autofac;
+using Autofac.Integration.WebApi;
+using CacheSystem.Application.Employees.Queries.GetEmployee;
+using CacheSystem.Persistance;
+using CacheSystem.PersistanceInMemory;
+using MediatR;
 using Microsoft.Owin.Hosting;
+using Owin;
+using System;
+using System.Reflection;
+using System.Web.Http;
 using Topshelf;
-//using Topshelf.Autofac;
+using Topshelf.Autofac;
 
 namespace CacheSystemService
 {
     class Program
     {
+        /// <summary>
+        /// Подготовка контейнера Autofac.
+        /// </summary>
+        /// <returns></returns>
+        static IContainer InitializeServices()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterGeneric(typeof(GenericRepository<,>))
+                .As(typeof(IRepository<,>))
+                .SingleInstance();
+
+            // MediatR
+            builder
+              .RegisterType<Mediator>()
+              .As<IMediator>()
+              .InstancePerLifetimeScope();
+
+            builder.Register<ServiceFactory>(context =>
+            {
+                var c = context.Resolve<IComponentContext>();
+                return t => c.Resolve(t);
+            });
+
+            var mediatrOpenTypes = new[]
+            {
+                typeof(IRequestHandler<,>),
+                typeof(INotificationHandler<>)
+            };
+
+            foreach (var mediatrOpenType in mediatrOpenTypes)
+            {
+                builder
+                    .RegisterAssemblyTypes(typeof(EmployeeDto).Assembly)
+                    .AsClosedTypesOf(mediatrOpenType)
+                    .AsImplementedInterfaces();
+            }
+
+            //WebApi
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+            return builder.Build();
+        }
+
         static void Main(string[] args)
         {
-            var baseUri = "http://localhost:8080";
-            WebApp.Start<Startup>(baseUri);
 
-            HostFactory.Run(host =>
+            var baseUri = "http://localhost:8080";
+            var container = InitializeServices();
+
+            WebApp.Start(baseUri, appBuilder =>
             {
-                // Pass it to Topshelf
-                host.SetServiceName("CacheService"); //cannot contain spaces or / or \
+                var config = new HttpConfiguration();
+                config.Routes.MapHttpRoute(
+                    "DefaultApi",
+                    "{controller}/{id}",
+                    new { id = RouteParameter.Optional });
+
+                config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+                appBuilder.UseAutofacMiddleware(container);
+                appBuilder.UseAutofacWebApi(config);
+                appBuilder.UseWebApi(config);
+
+            });
+
+            var t = HostFactory.Run(host =>
+            {
+                host.UseAutofacContainer(container);
+                host.SetServiceName("CacheService"); 
                 host.SetDisplayName("Служба распределенной системы кеширования");
                 host.SetDescription("Служба распределенной системы кеширования.");
                 host.StartAutomatically();
                 
                 host.Service<CacheService>(s =>
                 {
+                    s.ConstructUsingAutofacContainer();
                     s.ConstructUsing(name => new CacheService());
                     s.WhenStarted((service, control) => service.Start(control));
                     s.WhenStopped((service, control) => service.Stop(control));
+
                 });
+                
             });
         }
     }
