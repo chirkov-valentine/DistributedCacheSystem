@@ -39,6 +39,12 @@
     <Reference Include="Autofac.Integration.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Owin.4.2.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.4.0.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.Owin.4.0.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="MediatR, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediatR.5.1.0\lib\net45\MediatR.dll</HintPath>
     </Reference>
@@ -95,6 +101,10 @@
     <ProjectReference Include="..\CacheSystem.Application\CacheSystem.Application.csproj">
       <Project>{8BF939DE-A96F-4F73-A8A3-ED826460AAAA}</Project>
       <Name>CacheSystem.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CacheSystem.Domain\CacheSystem.Domain.csproj">
+      <Project>{64A939AE-305A-41F7-9DD6-5E4EDCCFE605}</Project>
+      <Name>CacheSystem.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\CacheSystem.PersistanceInMemory\CacheSystem.PersistanceInMemory.csproj">
       <Project>{DBE0E016-E830-4E58-B959-D566D77F7480}</Project>

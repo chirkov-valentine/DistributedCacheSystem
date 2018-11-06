@@ -44,14 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employees\Commands\CreateEmployee\CreateEmployeeCommand.cs" />
+    <Compile Include="Employees\Commands\CreateEmployee\CreateEmployeeCommandHandler.cs" />
+    <Compile Include="Employees\Commands\DeleteEmployee\DeleteEmployeeCommand.cs" />
+    <Compile Include="Employees\Commands\DeleteEmployee\DeleteEmployeeCommandHandler.cs" />
+    <Compile Include="Employees\Commands\UpdateEmployee\UpdateEmployeeCommand.cs" />
+    <Compile Include="Employees\Commands\UpdateEmployee\UpdateEmployeeCommandHandler.cs" />
     <Compile Include="Employees\Queries\GetEmployee\EmployeeDto.cs" />
     <Compile Include="Employees\Queries\GetEmployee\GetEmployeeQuery.cs" />
     <Compile Include="Employees\Queries\GetEmployee\GetEmployeeQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Employees\Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

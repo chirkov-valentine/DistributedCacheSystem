@@ -1,10 +1,12 @@
 ﻿using Autofac;
+using Autofac.Integration.WebApi;
 using CacheSystem.Application.Employees.Queries.GetEmployee;
 using CacheSystem.Persistance;
 using CacheSystem.PersistanceInMemory;
 using MediatR;
 using Owin;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Web.Http;
 
 namespace CacheSystemService
@@ -46,13 +48,14 @@ namespace CacheSystemService
                     .AsImplementedInterfaces();
             }
 
-
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            
             var container = builder.Build();
+            var webApiConfiguration = ConfigureWebApi();
+            webApiConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
             app.UseAutofacMiddleware(container);
-
-            var webApiConfiguration = ConfigureWebApi();
-
+            app.UseAutofacWebApi(webApiConfiguration);
             app.UseWebApi(webApiConfiguration);
         }
 
