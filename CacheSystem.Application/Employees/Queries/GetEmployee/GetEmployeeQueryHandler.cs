@@ -18,13 +18,21 @@ namespace CacheSystem.Application.Employees.Queries.GetEmployee
 
         protected override EmployeeDto Handle(GetEmployeeQuery request)
         {
-            var e = _repository.Get(request.Id);
-            return new EmployeeDto
+            Employee e = null;
+            try
             {
-                Id = request.Id,
-                FirstName = e.FirstName,
-                LastName = e.LastName
-            };
+                e = _repository.Get(request.Id);
+                return new EmployeeDto
+                {
+                    Id = request.Id,
+                    FirstName = e.FirstName,
+                    LastName = e.LastName
+                };
+            }
+            catch
+            {
+            }
+            return null;
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CacheSystem.Application.Employees.Commands.UpdateEmployee
 {
-    class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, Unit>
+    class UpdateEmployeeCommandHandler : RequestHandler<UpdateEmployeeCommand, bool>
     {
         private readonly IRepository<Employee, int> _repository;
 
@@ -19,12 +19,12 @@ namespace CacheSystem.Application.Employees.Commands.UpdateEmployee
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
+        protected override bool Handle(UpdateEmployeeCommand request)
         {
             var e = _repository.Get(request.Id);
             e.FirstName = request.FirstName;
             e.LastName = request.LastName;
-            return Unit.Value;
+            return true;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace CacheSystem.Application.Employees.Commands.UpdateEmployee
 {
-    public class UpdateEmployeeCommand : IRequest
+    public class UpdateEmployeeCommand : IRequest<bool>
     {
         public int Id { get; set; }
         public string LastName { get; set; }

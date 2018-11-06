@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MediatR, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.5.1.0\lib\net45\MediatR.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Host\Commands\DeleteHost\DeleteHostCommand.cs" />
+    <Compile Include="Host\Commands\DeleteHost\DeleteHostCommandHandler.cs" />
+    <Compile Include="Host\Queries\GetHostsList\GetHostsListQuery.cs" />
+    <Compile Include="Host\Queries\GetHostsList\GetHostsListQueryHandler.cs" />
+    <Compile Include="Host\Queries\GetHostsList\HostListModel.cs" />
+    <Compile Include="Host\Queries\GetHost\GetHostQuery.cs" />
+    <Compile Include="Host\Queries\GetHost\GetHostQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RegisterService.Persistance\RegisterService.Persistance.csproj">
+      <Project>{9bba3ff9-c950-4f61-898a-7e7c578178a8}</Project>
+      <Name>RegisterService.Persistance</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

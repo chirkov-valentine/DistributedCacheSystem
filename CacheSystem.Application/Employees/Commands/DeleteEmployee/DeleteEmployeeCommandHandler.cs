@@ -6,7 +6,7 @@ using MediatR;
 
 namespace CacheSystem.Application.Employees.Commands.DeleteEmployee
 {
-    public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand, Unit>
+    public class DeleteEmployeeCommandHandler : RequestHandler<DeleteEmployeeCommand, bool>
     {
         private readonly IRepository<Employee, int> _repository;
 
@@ -14,10 +14,17 @@ namespace CacheSystem.Application.Employees.Commands.DeleteEmployee
         {
             _repository = repository;
         }
-        public async Task<Unit> Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
+        protected override bool Handle(DeleteEmployeeCommand request)
         {
-            _repository.Delete(request.EmployeeId);
-            return await Unit.Task;
+            try
+            {
+                _repository.Delete(request.Id);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

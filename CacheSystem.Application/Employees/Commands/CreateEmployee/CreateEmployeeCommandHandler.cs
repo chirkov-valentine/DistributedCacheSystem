@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CacheSystem.Application.Employees.Commands.CreateEmployee
 {
-    public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, Unit>
+    public class CreateEmployeeCommandHandler : RequestHandler<CreateEmployeeCommand, bool>
     {
         private readonly IRepository<Employee, int> _repository;
 
@@ -18,7 +18,7 @@ namespace CacheSystem.Application.Employees.Commands.CreateEmployee
         {
             _repository = repository;
         }
-        public async Task<Unit> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
+        protected override bool Handle(CreateEmployeeCommand request)
         {
             var employee = new Employee
             {
@@ -26,7 +26,7 @@ namespace CacheSystem.Application.Employees.Commands.CreateEmployee
                 LastName = request.LastName
             };
             _repository.Create(employee, request.Id);
-            return await Unit.Task;
+            return true;
         }
     }
 }

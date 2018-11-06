@@ -27,17 +27,10 @@ namespace CacheSystemService.Controllers
            return await _mediator.Send(new GetEmployeeQuery { Id = id });
         }
 
-        public async Task<Unit> PostAsync(int id, [FromBody] EmployeeDto employeeDto)
+        public async Task<bool> PostAsync(int id, [FromBody] EmployeeDto employeeDto)
         {
-            EmployeeDto e = null;
-            try
-            {
-                e = await _mediator.Send(new GetEmployeeQuery { Id = id });
-            }
-            catch (Exception ex)
-            {
-                e = null;
-            }
+            EmployeeDto e = await _mediator.Send(new GetEmployeeQuery { Id = id }); ;
+           
             if (e == null)
                 return await _mediator.Send(new CreateEmployeeCommand
                     {
@@ -54,9 +47,9 @@ namespace CacheSystemService.Controllers
                 });
         }
 
-        public async Task<Unit> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            return await _mediator.Send(new DeleteEmployeeCommand { EmployeeId = id });
+            return await _mediator.Send(new DeleteEmployeeCommand { Id = id });
         }
 
     }
