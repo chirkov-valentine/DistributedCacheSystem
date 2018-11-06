@@ -7,7 +7,7 @@ using CacheSystem.Domain.Entities;
 
 namespace CacheSystem.Application.Employees.Queries.GetEmployee
 {
-    class GetEmployeeQueryHandler : IRequestHandler<GetEmployeeQuery, EmployeeDto>
+    public class GetEmployeeQueryHandler : IRequestHandler<GetEmployeeQuery, EmployeeDto>
     {
         private readonly IRepository<Employee, int> _repository;
 
