@@ -1,4 +1,5 @@
 ﻿using CacheSystem.Application.Employees.Queries.GetEmployee;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,18 @@ using System.Web.Http;
 
 namespace CacheSystemService.Controllers
 {
-    public class DataController : BaseController
+    public class DataController : ApiController
     {
+        private IMediator _mediator;
 
-        Task<EmployeeDto> Get(int id)
+        public DataController(IMediator mediator)
         {
-            return _mediator.Send(new GetEmployeeQuery());
+            _mediator = mediator;
+        }
+
+        public Task<EmployeeDto> GetAsync(int id)
+        {
+           return _mediator.Send(new GetEmployeeQuery());
         }
     }
 }

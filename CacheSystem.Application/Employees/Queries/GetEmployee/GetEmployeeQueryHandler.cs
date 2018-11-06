@@ -7,7 +7,7 @@ using CacheSystem.Domain.Entities;
 
 namespace CacheSystem.Application.Employees.Queries.GetEmployee
 {
-    public class GetEmployeeQueryHandler : IRequestHandler<GetEmployeeQuery, EmployeeDto>
+    public class GetEmployeeQueryHandler : RequestHandler<GetEmployeeQuery, EmployeeDto>
     {
         private readonly IRepository<Employee, int> _repository;
 
@@ -16,7 +16,7 @@ namespace CacheSystem.Application.Employees.Queries.GetEmployee
             _repository = repository;
         }
 
-        public async Task<EmployeeDto> Handle(GetEmployeeQuery request, CancellationToken cancellationToken)
+        protected override EmployeeDto Handle(GetEmployeeQuery request)
         {
             var e = _repository.Get(request.EmployeeId);
             return new EmployeeDto

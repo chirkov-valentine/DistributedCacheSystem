@@ -35,7 +35,7 @@ namespace CacheSystemService
             {
                 typeof(IRequestHandler<,>),
                 typeof(INotificationHandler<>),
-                typeof(IRequest<>)
+               // typeof(IRequest<>)
             };
 
             foreach (var mediatrOpenType in mediatrOpenTypes)
