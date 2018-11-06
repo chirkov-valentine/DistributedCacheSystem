@@ -22,11 +22,10 @@ namespace CacheSystem.Application.Employees.Commands.CreateEmployee
         {
             var employee = new Employee
             {
-                EmployeeId = request.EmployeeId,
                 FirstName = request.FirstName,
                 LastName = request.LastName
             };
-            _repository.Create(employee, employee.EmployeeId);
+            _repository.Create(employee, request.Id);
             return await Unit.Task;
         }
     }

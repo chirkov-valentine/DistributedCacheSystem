@@ -21,7 +21,7 @@ namespace CacheSystem.Application.Employees.Commands.UpdateEmployee
 
         public async Task<Unit> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
         {
-            var e = _repository.Get(request.EmployeeId);
+            var e = _repository.Get(request.Id);
             e.FirstName = request.FirstName;
             e.LastName = request.LastName;
             return Unit.Value;

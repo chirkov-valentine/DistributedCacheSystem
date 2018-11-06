@@ -24,7 +24,7 @@ namespace CacheSystemService.Controllers
 
         public async Task<EmployeeDto> GetAsync(int id)
         {
-           return await _mediator.Send(new GetEmployeeQuery { EmployeeId = id });
+           return await _mediator.Send(new GetEmployeeQuery { Id = id });
         }
 
         public async Task<Unit> PostAsync(int id, [FromBody] EmployeeDto employeeDto)
@@ -32,7 +32,7 @@ namespace CacheSystemService.Controllers
             EmployeeDto e = null;
             try
             {
-                e = await _mediator.Send(new GetEmployeeQuery { EmployeeId = id });
+                e = await _mediator.Send(new GetEmployeeQuery { Id = id });
             }
             catch (Exception ex)
             {
@@ -41,14 +41,14 @@ namespace CacheSystemService.Controllers
             if (e == null)
                 return await _mediator.Send(new CreateEmployeeCommand
                     {
-                        EmployeeId = id,
+                        Id = id,
                         FirstName = employeeDto.FirstName,
                         LastName = employeeDto.LastName
                     });
             else
                 return await _mediator.Send(new UpdateEmployeeCommand
                 {
-                    EmployeeId = id,
+                    Id = id,
                     FirstName = employeeDto.FirstName,
                     LastName = employeeDto.LastName
                 });
