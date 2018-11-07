@@ -34,7 +34,7 @@ namespace CacheSystemService.Controllers
             var updatePost = await _cacheServiceClient.Post(id, employeeDto);
             if(!updatePost)
             {
-                // Изменить нигде не смогли, поэтому сохраняем у себя
+                // Изменить нигде не смогли, поэтому создаем у себя
                 return await _mediator.Send(
                     new CreateEmployeeCommand
                     {
