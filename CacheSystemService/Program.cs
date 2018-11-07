@@ -32,8 +32,8 @@ namespace CacheSystemService
                 .SingleInstance();
 
             // Settings
-            builder.RegisterType<ICacheSystemSettings>()
-                .As<CacheSystemSettings>()
+            builder.RegisterType<CacheSystemSettings>()
+                .As<ICacheSystemSettings>()
                 .SingleInstance();
             
             // MediatR
@@ -68,9 +68,12 @@ namespace CacheSystemService
             return builder.Build();
         }
 
-        static void InitializeSettings(IContainer container)
+        static ICacheSystemSettings InitializeSettings(IContainer container)
         {
-
+            var settings = container.Resolve<ICacheSystemSettings>();
+            settings.UrlHost = ConfigurationManager.AppSettings["hostUrl"].ToString();
+            settings.RegisterServiceUrl = ConfigurationManager.AppSettings["registerUrl"].ToString();
+            return settings;
         }
 
         static void Main(string[] args)
@@ -79,9 +82,9 @@ namespace CacheSystemService
             var baseUri = ConfigurationManager.AppSettings["hostUrl"].ToString();
             var container = InitializeServices();
 
-            InitializeSettings(container);
+            var settings = InitializeSettings(container);
 
-            using (WebApp.Start(baseUri, appBuilder =>
+            using (WebApp.Start(settings.UrlHost, appBuilder =>
             {
                 var config = new HttpConfiguration();
                 config.Routes.MapHttpRoute(

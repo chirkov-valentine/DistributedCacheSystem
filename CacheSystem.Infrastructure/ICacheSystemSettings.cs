@@ -8,6 +8,7 @@ namespace CacheSystem.Infrastructure
 {
     public interface ICacheSystemSettings
     {
-
+        string UrlHost { get; set; }
+        string RegisterServiceUrl { get; set; }
     }
 }
