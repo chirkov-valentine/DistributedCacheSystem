@@ -3,6 +3,7 @@ using CacheSystem.Domain.Entities;
 using CacheSystem.Infrastructure.RegisterService;
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace CacheSystem.Infrastructure.CacheService
@@ -135,6 +136,9 @@ namespace CacheSystem.Infrastructure.CacheService
         {
             var result = new HttpClient();
             result.BaseAddress = new Uri(urlClient);
+            result.DefaultRequestHeaders.Accept.Clear();
+            result.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
             return result;
         }
 

@@ -3,6 +3,7 @@ using CacheSystem.Infrastructure.Models;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,6 +57,9 @@ namespace CacheSystem.Infrastructure.RegisterService
         {
             var result = new HttpClient();
             result.BaseAddress = new Uri(_settings.RegisterServiceUrl);
+            result.DefaultRequestHeaders.Accept.Clear();
+            result.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
             return result;
         }
     }
