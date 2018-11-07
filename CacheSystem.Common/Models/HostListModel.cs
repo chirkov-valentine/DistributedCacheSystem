@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RegisterService.Application.Host.Queries.GetHostsList
+namespace CacheSystem.Common.Models
 {
     public class HostListModel
     {

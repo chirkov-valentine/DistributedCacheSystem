@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CacheSystem.Domain.Entities;
+using MediatR;
 
 namespace CacheSystem.Application.Employees.Queries.GetEmployee
 {

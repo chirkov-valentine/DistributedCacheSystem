@@ -1,9 +1,6 @@
-﻿using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using CacheSystem.Domain.Entities;
 using CacheSystem.Persistance;
-using CacheSystem.Domain.Entities;
+using MediatR;
 
 namespace CacheSystem.Application.Employees.Queries.GetEmployee
 {

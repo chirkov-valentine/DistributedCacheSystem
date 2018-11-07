@@ -2,6 +2,7 @@
 using System;
 using RegisterService.Persistance;
 using System.Linq;
+using CacheSystem.Common.Models;
 
 namespace RegisterService.Application.Host.Queries.GetHostsList
 {

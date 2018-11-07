@@ -53,7 +53,6 @@
     <Compile Include="Employees\Queries\GetEmployeeList\EmployeeListModel.cs" />
     <Compile Include="Employees\Queries\GetEmployeeList\GetEmployeeListQuery.cs" />
     <Compile Include="Employees\Queries\GetEmployeeList\GetEmployeeListQueryHandler.cs" />
-    <Compile Include="Employees\Queries\GetEmployee\EmployeeDto.cs" />
     <Compile Include="Employees\Queries\GetEmployee\GetEmployeeQuery.cs" />
     <Compile Include="Employees\Queries\GetEmployee\GetEmployeeQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

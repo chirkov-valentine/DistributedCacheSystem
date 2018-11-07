@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using CacheSystem.Common.Models;
+using System.Threading.Tasks;
 
 namespace CacheSystem.Infrastructure.RegisterService
 {
@@ -6,5 +7,7 @@ namespace CacheSystem.Infrastructure.RegisterService
     {
         Task<bool> Register();
         Task<bool> UnRegister();
+        Task<bool> UnRegister(string serviceUrl);
+        Task<HostListModel> GetAll();
     }
 }

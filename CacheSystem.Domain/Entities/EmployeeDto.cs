@@ -1,4 +1,4 @@
-﻿namespace CacheSystem.Application.Employees.Queries.GetEmployee
+﻿namespace CacheSystem.Domain.Entities
 {
     public class EmployeeDto
     {

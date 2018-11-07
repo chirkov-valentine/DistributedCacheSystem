@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CacheSystem.Common.Models;
+using MediatR;
 using RegisterService.Application.Host.Commands.CreateHost;
 using RegisterService.Application.Host.Commands.DeleteHost;
 using RegisterService.Application.Host.Queries.GetHost;

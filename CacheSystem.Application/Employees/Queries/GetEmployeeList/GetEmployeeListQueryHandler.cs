@@ -1,12 +1,7 @@
-﻿using CacheSystem.Application.Employees.Queries.GetEmployee;
-using CacheSystem.Domain.Entities;
+﻿using CacheSystem.Domain.Entities;
 using CacheSystem.Persistance;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CacheSystem.Application.Employees.Queries.GetEmployeeList
 {

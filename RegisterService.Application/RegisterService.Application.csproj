@@ -50,7 +50,6 @@
     <Compile Include="Host\Commands\DeleteHost\DeleteHostCommandHandler.cs" />
     <Compile Include="Host\Queries\GetHostsList\GetHostsListQuery.cs" />
     <Compile Include="Host\Queries\GetHostsList\GetHostsListQueryHandler.cs" />
-    <Compile Include="Host\Queries\GetHostsList\HostListModel.cs" />
     <Compile Include="Host\Queries\GetHost\GetHostQuery.cs" />
     <Compile Include="Host\Queries\GetHost\GetHostQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CacheSystem.Common\CacheSystem.Common.csproj">
+      <Project>{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}</Project>
+      <Name>CacheSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RegisterService.Persistance\RegisterService.Persistance.csproj">
       <Project>{9bba3ff9-c950-4f61-898a-7e7c578178a8}</Project>
       <Name>RegisterService.Persistance</Name>

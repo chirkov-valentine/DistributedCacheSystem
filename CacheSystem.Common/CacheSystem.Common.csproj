@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B5E501D0-DEFD-415D-94AA-10AA0AB76190}</ProjectGuid>
+    <ProjectGuid>{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CacheSystem.Infrastructure</RootNamespace>
-    <AssemblyName>CacheSystem.Infrastructure</AssemblyName>
+    <RootNamespace>CacheSystem.Common</RootNamespace>
+    <AssemblyName>CacheSystem.Common</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,15 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,28 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheService\CacheServiceClient.cs" />
-    <Compile Include="CacheService\ICacheServiceClient.cs" />
-    <Compile Include="CacheSystemSettings.cs" />
-    <Compile Include="ICacheSystemSettings.cs" />
-    <Compile Include="Models\HostModel.cs" />
+    <Compile Include="Models\HostListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterService\IRegisterServiceClient.cs" />
-    <Compile Include="RegisterService\RegisterServiceClient.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CacheSystem.Common\CacheSystem.Common.csproj">
-      <Project>{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}</Project>
-      <Name>CacheSystem.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CacheSystem.Domain\CacheSystem.Domain.csproj">
-      <Project>{64A939AE-305A-41F7-9DD6-5E4EDCCFE605}</Project>
-      <Name>CacheSystem.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

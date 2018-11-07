@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CacheSystem.Common.Models;
+using MediatR;
 
 namespace RegisterService.Application.Host.Queries.GetHostsList
 {

@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterService.Persistance
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CacheSystem.Infrastructure", "CacheSystem.Infrastructure\CacheSystem.Infrastructure.csproj", "{B5E501D0-DEFD-415D-94AA-10AA0AB76190}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CacheSystem.Common", "CacheSystem.Common\CacheSystem.Common.csproj", "{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{B5E501D0-DEFD-415D-94AA-10AA0AB76190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5E501D0-DEFD-415D-94AA-10AA0AB76190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5E501D0-DEFD-415D-94AA-10AA0AB76190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{5244F9A0-0888-4E94-95F4-DFA069A15FE3} = {D2197AA1-DD0D-4B67-8C29-3C04E23F001F}
 		{9BBA3FF9-C950-4F61-898A-7E7C578178A8} = {5244F9A0-0888-4E94-95F4-DFA069A15FE3}
 		{B5E501D0-DEFD-415D-94AA-10AA0AB76190} = {43895680-CE41-41AA-B2B8-BD2D2E0B46BB}
+		{92C6F91C-0FE6-4BB0-BE54-211E08C188A7} = {F2B6C11A-3FDC-4D2A-B154-E610453C9C06}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0798DF5B-CB76-4DB6-93B6-B9F2446C35C1}

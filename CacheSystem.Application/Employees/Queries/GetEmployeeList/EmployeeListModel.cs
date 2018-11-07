@@ -1,4 +1,4 @@
-﻿using CacheSystem.Application.Employees.Queries.GetEmployee;
+﻿using CacheSystem.Domain.Entities;
 using System.Collections.Generic;
 
 namespace CacheSystem.Application.Employees.Queries.GetEmployeeList

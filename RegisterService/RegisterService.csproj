@@ -98,6 +98,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CacheSystem.Common\CacheSystem.Common.csproj">
+      <Project>{92C6F91C-0FE6-4BB0-BE54-211E08C188A7}</Project>
+      <Name>CacheSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RegisterService.Application\RegisterService.Application.csproj">
       <Project>{93d07d8a-db70-4b6c-ab48-52926e0c7cea}</Project>
       <Name>RegisterService.Application</Name>

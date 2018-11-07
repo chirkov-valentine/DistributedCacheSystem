@@ -2,6 +2,7 @@
 using Autofac.Integration.WebApi;
 using CacheSystem.Application.Employees.Queries.GetEmployee;
 using CacheSystem.Infrastructure;
+using CacheSystem.Infrastructure.CacheService;
 using CacheSystem.Infrastructure.RegisterService;
 using CacheSystem.Persistance;
 using CacheSystem.PersistanceInMemory;
@@ -40,6 +41,9 @@ namespace CacheSystemService
             builder.RegisterType<RegisterServiceClient>()
                 .As<IRegisterServiceClient>();
 
+            builder.RegisterType<CacheServiceClient>()
+                .As<ICacheServiceClient>();
+
             builder.RegisterType<CacheService>();
 
             // MediatR
@@ -63,7 +67,7 @@ namespace CacheSystemService
             foreach (var mediatrOpenType in mediatrOpenTypes)
             {
                 builder
-                    .RegisterAssemblyTypes(typeof(EmployeeDto).Assembly)
+                    .RegisterAssemblyTypes(typeof(GetEmployeeQuery).Assembly)
                     .AsClosedTypesOf(mediatrOpenType)
                     .AsImplementedInterfaces();
             }
