@@ -64,6 +64,7 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -107,6 +108,10 @@
     <ProjectReference Include="..\CacheSystem.Domain\CacheSystem.Domain.csproj">
       <Project>{64A939AE-305A-41F7-9DD6-5E4EDCCFE605}</Project>
       <Name>CacheSystem.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CacheSystem.Infrastructure\CacheSystem.Infrastructure.csproj">
+      <Project>{B5E501D0-DEFD-415D-94AA-10AA0AB76190}</Project>
+      <Name>CacheSystem.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\CacheSystem.PersistanceInMemory\CacheSystem.PersistanceInMemory.csproj">
       <Project>{DBE0E016-E830-4E58-B959-D566D77F7480}</Project>

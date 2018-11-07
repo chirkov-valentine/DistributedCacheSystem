@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Host\Commands\CreateHost\CreateHostCommand.cs" />
+    <Compile Include="Host\Commands\CreateHost\CreateHostCommandHandler.cs" />
     <Compile Include="Host\Commands\DeleteHost\DeleteHostCommand.cs" />
     <Compile Include="Host\Commands\DeleteHost\DeleteHostCommandHandler.cs" />
     <Compile Include="Host\Queries\GetHostsList\GetHostsListQuery.cs" />

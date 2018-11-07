@@ -1,12 +1,14 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
 using CacheSystem.Application.Employees.Queries.GetEmployee;
+using CacheSystem.Infrastructure;
 using CacheSystem.Persistance;
 using CacheSystem.PersistanceInMemory;
 using MediatR;
 using Microsoft.Owin.Hosting;
 using Owin;
 using System;
+using System.Configuration;
 using System.Reflection;
 using System.Web.Http;
 using Topshelf;
@@ -24,10 +26,16 @@ namespace CacheSystemService
         {
             var builder = new ContainerBuilder();
 
+            // Repository
             builder.RegisterGeneric(typeof(GenericRepository<,>))
                 .As(typeof(IRepository<,>))
                 .SingleInstance();
 
+            // Settings
+            builder.RegisterType<ICacheSystemSettings>()
+                .As<CacheSystemSettings>()
+                .SingleInstance();
+            
             // MediatR
             builder
               .RegisterType<Mediator>()
@@ -60,13 +68,20 @@ namespace CacheSystemService
             return builder.Build();
         }
 
+        static void InitializeSettings(IContainer container)
+        {
+
+        }
+
         static void Main(string[] args)
         {
 
-            var baseUri = "http://localhost:8080";
+            var baseUri = ConfigurationManager.AppSettings["hostUrl"].ToString();
             var container = InitializeServices();
 
-            WebApp.Start(baseUri, appBuilder =>
+            InitializeSettings(container);
+
+            using (WebApp.Start(baseUri, appBuilder =>
             {
                 var config = new HttpConfiguration();
                 config.Routes.MapHttpRoute(
@@ -80,26 +95,26 @@ namespace CacheSystemService
                 appBuilder.UseAutofacWebApi(config);
                 appBuilder.UseWebApi(config);
 
-            });
-
-            var t = HostFactory.Run(host =>
+            }))
             {
-                host.UseAutofacContainer(container);
-                host.SetServiceName("CacheService"); 
-                host.SetDisplayName("Служба распределенной системы кеширования");
-                host.SetDescription("Служба распределенной системы кеширования.");
-                host.StartAutomatically();
-                
-                host.Service<CacheService>(s =>
+                HostFactory.Run(host =>
                 {
-                    s.ConstructUsingAutofacContainer();
-                    s.ConstructUsing(name => new CacheService());
-                    s.WhenStarted((service, control) => service.Start(control));
-                    s.WhenStopped((service, control) => service.Stop(control));
+                    host.UseAutofacContainer(container);
+                    host.SetServiceName("CacheService");
+                    host.SetDisplayName("Служба распределенной системы кеширования");
+                    host.SetDescription("Служба распределенной системы кеширования.");
+                    host.StartAutomatically();
 
+                    host.Service<CacheService>(s =>
+                    {
+                        s.ConstructUsingAutofacContainer();
+                        s.ConstructUsing(name => new CacheService());
+                        s.WhenStarted((service, control) => service.Start(control));
+                        s.WhenStopped((service, control) => service.Stop(control));
+
+                    });
                 });
-                
-            });
+            }
         }
     }
 }
