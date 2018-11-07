@@ -11,7 +11,6 @@ namespace CacheSystem.Infrastructure.CacheService
     {
         private readonly ICacheSystemSettings _cacheSystemSettings;
         private readonly IRegisterServiceClient _registerServiceClient;
-        private HttpClient _httpClient;
 
         public CacheServiceClient(
             ICacheSystemSettings cacheSystemSettings,
@@ -19,7 +18,6 @@ namespace CacheSystem.Infrastructure.CacheService
         {
             _cacheSystemSettings = cacheSystemSettings;
             _registerServiceClient = registerServiceClient;
-            _httpClient = new HttpClient();
         }
 
         public async Task<bool> Delete(int key)
@@ -98,10 +96,9 @@ namespace CacheSystem.Infrastructure.CacheService
         private async Task<EmployeeDto> GetData(int key, string urlClient)
         {
             var path = $"cluster/{key}";
-
+            var httpClient = Initialize(urlClient);
             EmployeeDto employeeDto = null;
-            _httpClient.BaseAddress = new Uri(urlClient);
-            var response = await _httpClient.GetAsync(path);
+            var response = await httpClient.GetAsync(path);
             // Вызываем исключение, если что не так
             response.EnsureSuccessStatusCode();
 
@@ -113,9 +110,9 @@ namespace CacheSystem.Infrastructure.CacheService
         private async Task<bool> PostData(int key, string urlClient, EmployeeDto employeeDto)
         {
             var path = $"cluster/{key}";
-            
-            _httpClient.BaseAddress = new Uri(urlClient);
-            var response = await _httpClient.PostAsJsonAsync(path, employeeDto);
+            var httpClient = Initialize(urlClient);
+
+            var response = await httpClient.PostAsJsonAsync(path, employeeDto);
             // Вызываем исключение, если что не так
             response.EnsureSuccessStatusCode();
 
@@ -125,13 +122,20 @@ namespace CacheSystem.Infrastructure.CacheService
         private async Task<bool> DeleteData(int key, string urlClient)
         {
             var path = $"cluster/{key}";
-            
-            _httpClient.BaseAddress = new Uri(urlClient);
-            var response = await _httpClient.DeleteAsync(path);
+            var httpClient = Initialize(urlClient);
+
+            var response = await httpClient.DeleteAsync(path);
             // Вызываем исключение, если что не так
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadAsAsync<bool>();
+        }
+
+        private HttpClient Initialize(string urlClient)
+        {
+            var result = new HttpClient();
+            result.BaseAddress = new Uri(urlClient);
+            return result;
         }
 
     }

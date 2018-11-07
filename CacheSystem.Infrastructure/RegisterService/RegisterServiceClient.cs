@@ -11,28 +11,26 @@ namespace CacheSystem.Infrastructure.RegisterService
     public class RegisterServiceClient : IRegisterServiceClient
     {
         private readonly ICacheSystemSettings _settings;
-        private HttpClient _httpClient;
 
         public RegisterServiceClient(ICacheSystemSettings settings)
         {
-            _settings = settings;
-            _httpClient = new HttpClient();
+            _settings = settings;         
         }
 
         public async Task<HostListModel> GetAll()
         {
             var model = new HostListModel();
-            _httpClient.BaseAddress = new Uri(_settings.RegisterServiceUrl);
-            var response = await _httpClient.GetAsync(_settings.RegisterServiceUrl);
+            var httpClient = Initialize();
+            var response = await httpClient.GetAsync("register");
             return await response.Content.ReadAsAsync<HostListModel>();
         }
 
         public async Task<bool> Register()
         {
             var model = new HostModel { Host = _settings.UrlHost };
-
-            _httpClient.BaseAddress = new Uri(_settings.RegisterServiceUrl);
-            var response = await _httpClient.PostAsJsonAsync("register", model);
+            var httpClient = Initialize();
+            
+            var response = await httpClient.PostAsJsonAsync("register", model);
             return await response.Content.ReadAsAsync<bool>();
         }
 
@@ -45,11 +43,20 @@ namespace CacheSystem.Infrastructure.RegisterService
         {
             var model = new HostModel { Host = serviceUrl };
 
+            var httpClient = Initialize();
+
             var request = new HttpRequestMessage(HttpMethod.Delete, "register");
             request.Content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-            var response = await _httpClient.SendAsync(request);
+            var response = await httpClient.SendAsync(request);
             return await response.Content.ReadAsAsync<bool>();
 
+        }
+
+        private HttpClient Initialize()
+        {
+            var result = new HttpClient();
+            result.BaseAddress = new Uri(_settings.RegisterServiceUrl);
+            return result;
         }
     }
 }
