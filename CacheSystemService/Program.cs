@@ -2,6 +2,7 @@
 using Autofac.Integration.WebApi;
 using CacheSystem.Application.Employees.Queries.GetEmployee;
 using CacheSystem.Infrastructure;
+using CacheSystem.Infrastructure.RegisterService;
 using CacheSystem.Persistance;
 using CacheSystem.PersistanceInMemory;
 using MediatR;
@@ -35,7 +36,12 @@ namespace CacheSystemService
             builder.RegisterType<CacheSystemSettings>()
                 .As<ICacheSystemSettings>()
                 .SingleInstance();
-            
+
+            builder.RegisterType<RegisterServiceClient>()
+                .As<IRegisterServiceClient>();
+
+            builder.RegisterType<CacheService>();
+
             // MediatR
             builder
               .RegisterType<Mediator>()
@@ -111,7 +117,6 @@ namespace CacheSystemService
                     host.Service<CacheService>(s =>
                     {
                         s.ConstructUsingAutofacContainer();
-                        s.ConstructUsing(name => new CacheService());
                         s.WhenStarted((service, control) => service.Start(control));
                         s.WhenStopped((service, control) => service.Stop(control));
 

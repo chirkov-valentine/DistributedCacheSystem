@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CacheSystemSettings.cs" />
     <Compile Include="ICacheSystemSettings.cs" />
+    <Compile Include="Models\HostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterService\IRegisterServiceClient.cs" />
     <Compile Include="RegisterService\RegisterServiceClient.cs" />
