@@ -1,5 +1,7 @@
-﻿using CacheSystem.Domain.Entities;
+﻿using CacheSystem.Application.Employees.Commands.CreateEmployee;
+using CacheSystem.Domain.Entities;
 using CacheSystem.Infrastructure.CacheService;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,14 @@ namespace CacheSystemService.Controllers
     public class DataController : ApiController
     {
         private readonly ICacheServiceClient _cacheServiceClient;
+        private readonly IMediator _mediator;
 
-        public DataController(ICacheServiceClient cacheServiceClient)
+        public DataController(
+            ICacheServiceClient cacheServiceClient,
+            IMediator mediator)
         {
             _cacheServiceClient = cacheServiceClient;
+            _mediator = mediator;
         }
 
         public async Task<EmployeeDto> GetAsync(int id)
@@ -25,7 +31,19 @@ namespace CacheSystemService.Controllers
 
         public async Task<bool> PostAsync(int id, [FromBody] EmployeeDto employeeDto)
         {
-            return await _cacheServiceClient.Post(id, employeeDto);
+            var updatePost = await _cacheServiceClient.Post(id, employeeDto);
+            if(!updatePost)
+            {
+                // Изменить нигде не смогли, поэтому сохраняем у себя
+                return await _mediator.Send(
+                    new CreateEmployeeCommand
+                    {
+                        Id = id,
+                        FirstName = employeeDto.FirstName,
+                        LastName = employeeDto.LastName
+                    });
+            }
+            return updatePost;
         }
 
         public async Task<bool> DeleteAsync(int id)

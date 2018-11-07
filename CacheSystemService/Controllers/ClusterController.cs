@@ -33,20 +33,16 @@ namespace CacheSystemService.Controllers
         {
             EmployeeDto e = await _mediator.Send(new GetEmployeeQuery { Id = id }); ;
            
-            if (e == null)
-                return await _mediator.Send(new CreateEmployeeCommand
-                    {
-                        Id = id,
-                        FirstName = employeeDto.FirstName,
-                        LastName = employeeDto.LastName
-                    });
-            else
+            if (e != null)
+             
                 return await _mediator.Send(new UpdateEmployeeCommand
                 {
                     Id = id,
                     FirstName = employeeDto.FirstName,
                     LastName = employeeDto.LastName
                 });
+
+            return false;
         }
 
         public async Task<bool> DeleteAsync(int id)

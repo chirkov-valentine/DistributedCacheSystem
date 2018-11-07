@@ -76,12 +76,9 @@ namespace CacheSystem.Infrastructure.CacheService
             {
                 try
                 {
-                    if (client != _cacheSystemSettings.UrlHost)
-                    {
-                        var e = await GetData(key, client);
-                        if (e != null)
-                            return await PostData(key, client, employeeDto);
-                    }
+                    var e = await GetData(key, client);
+                    if (e != null)
+                        return await PostData(key, client, employeeDto);
                 }
                 catch (HttpRequestException ex)
                 {
@@ -90,8 +87,7 @@ namespace CacheSystem.Infrastructure.CacheService
                     throw ex;
                 }
             }
-            // В других кластерах нет, дабавляем/изменяем у себя
-            return await PostData(key, _cacheSystemSettings.UrlHost, employeeDto); ;
+            return false;
         }
 
         private async Task<HostListModel> GetClients()
