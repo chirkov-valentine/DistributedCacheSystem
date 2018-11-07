@@ -92,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheService.cs" />
-    <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\ClusterController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

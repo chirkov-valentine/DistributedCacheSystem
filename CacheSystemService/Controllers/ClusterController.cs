@@ -2,6 +2,7 @@
 using CacheSystem.Application.Employees.Commands.DeleteEmployee;
 using CacheSystem.Application.Employees.Commands.UpdateEmployee;
 using CacheSystem.Application.Employees.Queries.GetEmployee;
+using CacheSystem.Application.Employees.Queries.GetEmployeeList;
 using CacheSystem.Domain.Entities;
 using MediatR;
 using System;
@@ -13,13 +14,18 @@ using System.Web.Http;
 
 namespace CacheSystemService.Controllers
 {
-    public class DataController : ApiController
+    public class ClusterController : ApiController
     {
         private IMediator _mediator;
 
-        public DataController(IMediator mediator)
+        public ClusterController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        public async Task<EmployeeListModel> GetAsync()
+        {
+            return await _mediator.Send(new GetEmployeeListQuery());
         }
 
         public async Task<EmployeeDto> GetAsync(int id)

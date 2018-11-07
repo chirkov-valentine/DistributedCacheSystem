@@ -28,5 +28,15 @@ namespace CacheSystem.PersistanceInMemory
             var ent = Get(key);
             ent = entity;
         }
+
+        public List<KeyValuePair<TKey, TEntity>> GetAll()
+        {
+            var list = new List<KeyValuePair<TKey, TEntity>>();
+            foreach(var kv in _entities)
+            {
+                list.Add(kv);
+            }
+            return list;
+        }
     }
 }

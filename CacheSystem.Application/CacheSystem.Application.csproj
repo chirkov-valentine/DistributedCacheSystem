@@ -50,6 +50,9 @@
     <Compile Include="Employees\Commands\DeleteEmployee\DeleteEmployeeCommandHandler.cs" />
     <Compile Include="Employees\Commands\UpdateEmployee\UpdateEmployeeCommand.cs" />
     <Compile Include="Employees\Commands\UpdateEmployee\UpdateEmployeeCommandHandler.cs" />
+    <Compile Include="Employees\Queries\GetEmployeeList\EmployeeListModel.cs" />
+    <Compile Include="Employees\Queries\GetEmployeeList\GetEmployeeListQuery.cs" />
+    <Compile Include="Employees\Queries\GetEmployeeList\GetEmployeeListQueryHandler.cs" />
     <Compile Include="Employees\Queries\GetEmployee\EmployeeDto.cs" />
     <Compile Include="Employees\Queries\GetEmployee\GetEmployeeQuery.cs" />
     <Compile Include="Employees\Queries\GetEmployee\GetEmployeeQueryHandler.cs" />
