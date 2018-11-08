@@ -47,13 +47,16 @@ RegisterService uninstall
 - *hostUrl* - адрес хоста, на котором развернут экземпляр системы кеширования.
 - *registerUrl* - адрес хоста службы *RegisterService*
 
-Программа написана с использованием [TopShelf](http://topshelf-project.com/ "Topshelf"), поэтому может быть развернута как служба Windows при помощи команд:
+Программа написана с использованием [TopShelf](http://topshelf-project.com/ "Topshelf"), поэтому может быть установлена как служба Windows при помощи команды:
 ```
 CacheSystemService install
+```
+Служба может быть удалена командой:
+```
 CacheSystemService uninstall
 ```
 
-Установка нескольких экземляров службы:
+Установка нескольких экземпляров службы:
 ```
 CacheSystemService.exe install -instance:FirstInstanceOfMyService
 
