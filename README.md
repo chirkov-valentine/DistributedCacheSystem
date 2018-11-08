@@ -52,6 +52,14 @@ RegisterService uninstall
 CacheSystemService install
 CacheSystemService uninstall
 ```
+
+Установка нескольких экземляров служб:
+```
+CacheSystemService.exe install -instance:FirstInstanceOfMyService
+
+CacheSystemService.exe install -instance:SecondInstanceOfMyService
+```
+
 ## Системные требования
 NET Framework 4.7.2
 
