@@ -12,9 +12,9 @@ namespace CacheSystem.Application.Employees.Commands.UpdateEmployee
 {
     class UpdateEmployeeCommandHandler : RequestHandler<UpdateEmployeeCommand, bool>
     {
-        private readonly IRepository<Employee, int> _repository;
+        private readonly IRepository<Employee, string> _repository;
 
-        public UpdateEmployeeCommandHandler(IRepository<Employee, int> repository)
+        public UpdateEmployeeCommandHandler(IRepository<Employee, string> repository)
         {
             _repository = repository;
         }

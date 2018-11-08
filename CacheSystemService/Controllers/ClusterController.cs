@@ -24,12 +24,12 @@ namespace CacheSystemService.Controllers
             return await _mediator.Send(new GetEmployeeListQuery());
         }
 
-        public async Task<EmployeeDto> GetAsync(int id)
+        public async Task<EmployeeDto> GetAsync(string id)
         {
            return await _mediator.Send(new GetEmployeeQuery { Id = id });
         }
 
-        public async Task<bool> PostAsync(int id, [FromBody] EmployeeDto employeeDto)
+        public async Task<bool> PostAsync(string id, [FromBody] EmployeeDto employeeDto)
         {
             EmployeeDto e = await _mediator.Send(new GetEmployeeQuery { Id = id }); ;
            
@@ -45,7 +45,7 @@ namespace CacheSystemService.Controllers
             return false;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(string id)
         {
             return await _mediator.Send(new DeleteEmployeeCommand { Id = id });
         }

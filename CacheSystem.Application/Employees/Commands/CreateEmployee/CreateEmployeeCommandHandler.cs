@@ -12,9 +12,9 @@ namespace CacheSystem.Application.Employees.Commands.CreateEmployee
 {
     public class CreateEmployeeCommandHandler : RequestHandler<CreateEmployeeCommand, bool>
     {
-        private readonly IRepository<Employee, int> _repository;
+        private readonly IRepository<Employee, string> _repository;
 
-        public CreateEmployeeCommandHandler(IRepository<Employee, int> repository)
+        public CreateEmployeeCommandHandler(IRepository<Employee, string> repository)
         {
             _repository = repository;
         }

@@ -21,7 +21,7 @@ namespace CacheSystem.Infrastructure.CacheService
             _registerServiceClient = registerServiceClient;
         }
 
-        public async Task<bool> Delete(int key)
+        public async Task<bool> Delete(string key)
         {
             var clients = await GetClients();
 
@@ -44,7 +44,7 @@ namespace CacheSystem.Infrastructure.CacheService
             return false;
         }
 
-        public async Task<EmployeeDto> GetFirst(int key)
+        public async Task<EmployeeDto> GetFirst(string key)
         {
             var clients = await GetClients();
 
@@ -67,7 +67,7 @@ namespace CacheSystem.Infrastructure.CacheService
             return null;
         }
 
-        public async Task<bool> Post(int key, EmployeeDto employeeDto)
+        public async Task<bool> Post(string key, EmployeeDto employeeDto)
         {
             var clients = await GetClients();
 
@@ -94,7 +94,7 @@ namespace CacheSystem.Infrastructure.CacheService
             return await _registerServiceClient.GetAll();
         }
 
-        private async Task<EmployeeDto> GetData(int key, string urlClient)
+        private async Task<EmployeeDto> GetData(string key, string urlClient)
         {
             var path = $"cluster/{key}";
             var httpClient = Initialize(urlClient);
@@ -108,7 +108,7 @@ namespace CacheSystem.Infrastructure.CacheService
             return employeeDto;
         }
 
-        private async Task<bool> PostData(int key, string urlClient, EmployeeDto employeeDto)
+        private async Task<bool> PostData(string key, string urlClient, EmployeeDto employeeDto)
         {
             var path = $"cluster/{key}";
             var httpClient = Initialize(urlClient);
@@ -120,7 +120,7 @@ namespace CacheSystem.Infrastructure.CacheService
             return await response.Content.ReadAsAsync<bool>();
         }
 
-        private async Task<bool> DeleteData(int key, string urlClient)
+        private async Task<bool> DeleteData(string key, string urlClient)
         {
             var path = $"cluster/{key}";
             var httpClient = Initialize(urlClient);

@@ -4,6 +4,6 @@ namespace CacheSystem.Application.Employees.Commands.DeleteEmployee
 {
     public class DeleteEmployeeCommand : IRequest<bool>
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }

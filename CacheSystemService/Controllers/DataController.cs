@@ -24,12 +24,12 @@ namespace CacheSystemService.Controllers
             _mediator = mediator;
         }
 
-        public async Task<EmployeeDto> GetAsync(int id)
+        public async Task<EmployeeDto> GetAsync(string id)
         {
             return await _cacheServiceClient.GetFirst(id);
         }
 
-        public async Task<bool> PostAsync(int id, [FromBody] EmployeeDto employeeDto)
+        public async Task<bool> PostAsync(string id, [FromBody] EmployeeDto employeeDto)
         {
             var updatePost = await _cacheServiceClient.Post(id, employeeDto);
             if(!updatePost)
@@ -46,7 +46,7 @@ namespace CacheSystemService.Controllers
             return updatePost;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(string id)
         {
             return await _cacheServiceClient.Delete(id);
         }

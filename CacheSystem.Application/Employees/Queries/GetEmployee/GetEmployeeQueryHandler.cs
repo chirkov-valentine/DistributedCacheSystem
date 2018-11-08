@@ -6,9 +6,9 @@ namespace CacheSystem.Application.Employees.Queries.GetEmployee
 {
     public class GetEmployeeQueryHandler : RequestHandler<GetEmployeeQuery, EmployeeDto>
     {
-        private readonly IRepository<Employee, int> _repository;
+        private readonly IRepository<Employee, string> _repository;
 
-        public GetEmployeeQueryHandler(IRepository<Employee, int> repository)
+        public GetEmployeeQueryHandler(IRepository<Employee, string> repository)
         {
             _repository = repository;
         }

@@ -14,18 +14,18 @@ namespace CacheSystem.Infrastructure.CacheService
         /// </summary>
         /// <param name="key">Ключ.</param>
         /// <returns>Данные.</returns>
-        Task<EmployeeDto> GetFirst(int key);
+        Task<EmployeeDto> GetFirst(string key);
         /// <summary>
         /// Обновление там, где найдено.
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<bool> Post(int key, EmployeeDto employeeDto);
+        Task<bool> Post(string key, EmployeeDto employeeDto);
         /// <summary>
         /// Удаление там, где найдено.
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<bool> Delete(int key);
+        Task<bool> Delete(string key);
     }
 }

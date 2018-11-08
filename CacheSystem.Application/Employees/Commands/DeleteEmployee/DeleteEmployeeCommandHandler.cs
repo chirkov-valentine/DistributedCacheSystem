@@ -8,9 +8,9 @@ namespace CacheSystem.Application.Employees.Commands.DeleteEmployee
 {
     public class DeleteEmployeeCommandHandler : RequestHandler<DeleteEmployeeCommand, bool>
     {
-        private readonly IRepository<Employee, int> _repository;
+        private readonly IRepository<Employee, string> _repository;
 
-        public DeleteEmployeeCommandHandler(IRepository<Employee, int> repository)
+        public DeleteEmployeeCommandHandler(IRepository<Employee, string> repository)
         {
             _repository = repository;
         }
