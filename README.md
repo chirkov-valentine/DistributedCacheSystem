@@ -25,7 +25,7 @@
 RegisterService install
 RegisterService uninstall
 ```
-##Настройка *CacheSystemService*
+## Настройка *CacheSystemService*
 Данные для сохранения в кеше представлены классом Employee.
 ```csharp
  public class Employee
@@ -34,7 +34,7 @@ RegisterService uninstall
         public string FirstName { get; set; }
     }
 ```
-Во всех экземплярах кеша данные доступны по уникальному ключу типа string, уникальность ключа должна быть обеспечена на уровне всего кеша, а не только его отдельных экземпляров.
+Во всех экземплярах кеша данные доступны по уникальному ключу типа **string**. Уникальность ключа должна быть обеспечена **на уровне всего кеша**, а не только его отдельных экземпляров.
 Поиск осуществляется до первого найденного экземпляра данных по ключу.
 
 Программа содержит следующие настройки:
@@ -52,7 +52,7 @@ RegisterService uninstall
 CacheSystemService install
 CacheSystemService uninstall
 ```
-##Системные требования
+## Системные требования
 NET Framework 4.7.2
 
 
