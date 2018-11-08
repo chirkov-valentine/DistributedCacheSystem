@@ -10,7 +10,7 @@
 1. Запускаем один экземпляр *RegisterService*.
 1. Запускаем необходимое количество экземпляров *CacheSystemService*.
 
-##Настройка *RegisterService*
+## Настройка *RegisterService*
 Программа регистрирует все запущенные сервисы *CacheSystemService*. Это необходимо для общения экземпляров *CacheSystemService* между собой.
 ***.config*** файл содержит следующие настройки:
 ```xml
