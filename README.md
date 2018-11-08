@@ -20,12 +20,18 @@
 ```
 
 *hostUrl* - адрес хоста, на котором развернута служба.
-Программа написана с использованием [TopShelf](http://topshelf-project.com/ "Topshelf"), поэтому может быть развернута как служба Windows при помощи команд:
+
+Программа написана с использованием [TopShelf](http://topshelf-project.com/ "Topshelf"), поэтому может быть установлена как служба Windows при помощи команды:
 ```
 RegisterService install
+```
+Служба может быть удалена командой:
+```
 RegisterService uninstall
 ```
+
 ## Настройка *CacheSystemService*
+
 Данные для сохранения в кеше представлены классом Employee.
 ```csharp
  public class Employee
