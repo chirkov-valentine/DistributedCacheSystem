@@ -53,7 +53,7 @@ CacheSystemService install
 CacheSystemService uninstall
 ```
 
-Установка нескольких экземляров служб:
+Установка нескольких экземляров службы:
 ```
 CacheSystemService.exe install -instance:FirstInstanceOfMyService
 
